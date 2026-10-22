@@ -1,0 +1,29 @@
+<section class="wrap collection-page">
+  <div class="section-head">
+    <div>
+      <span class="kicker">Shop</span>
+      <h1>Collections</h1>
+    </div>
+  </div>
+  <nav class="cat-circles">
+    {%- for collection in collections -%}
+      {%- unless collection.handle == 'frontpage' -%}
+        <a class="cat-orb" href="{{ collection.url }}">
+          {%- if collection.featured_image -%}
+            <img src="{{ collection.featured_image | image_url: width: 600 }}" alt="{{ collection.title | escape }}">
+          {%- else -%}
+            <span class="cat-orb-mark">✦</span>
+          {%- endif -%}
+          <span class="cat-orb-copy">{{ collection.title }} <i aria-hidden="true">→</i></span>
+        </a>
+      {%- endunless -%}
+    {%- endfor -%}
+  </nav>
+</section>
+
+{% schema %}
+{
+  "name": "Liste collections",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,21 @@
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "announcement": {
+      "type": "announcement-bar",
+      "settings": {
+        "shipping": "Livraison gratuite · 24h–48h Maroc",
+        "sale_text": "Solde hoodies",
+        "show_countdown": true
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "menu": "main-menu"
+      }
+    }
+  },
+  "order": ["announcement", "header"]
+}

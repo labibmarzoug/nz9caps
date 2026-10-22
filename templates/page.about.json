@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": { "type": "main-page", "settings": {} },
+    "text": {
+      "type": "rich-text",
+      "settings": {
+        "kicker": "Studio",
+        "heading": "About",
+        "text": "<p>Studiocapnza9. Streetwear × haute couture. Hoodies, caps, drops limités. Livraison gratuite 24h–48h au Maroc. Cash on delivery.</p>"
+      }
+    }
+  },
+  "order": ["main", "text"]
+}

@@ -1,0 +1,38 @@
+<section class="wrap perks">
+  {%- for block in section.blocks -%}
+    <article class="perk glass" {{ block.shopify_attributes }}>
+      <div class="perk-ico">{{ block.settings.number }}</div>
+      <b>{{ block.settings.title }}</b>
+      <span>{{ block.settings.text }}</span>
+    </article>
+  {%- endfor -%}
+</section>
+
+{% schema %}
+{
+  "name": "Avantages",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "perk",
+      "name": "Avantage",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Numéro", "default": "01" },
+        { "type": "text", "id": "title", "label": "Titre", "default": "Livraison gratuite" },
+        { "type": "text", "id": "text", "label": "Texte", "default": "24h à 48h partout au Maroc." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Avantages",
+      "blocks": [
+        { "type": "perk", "settings": { "number": "01", "title": "Livraison gratuite", "text": "24h à 48h partout au Maroc." } },
+        { "type": "perk", "settings": { "number": "02", "title": "Cash on delivery", "text": "Tu paies à la réception." } },
+        { "type": "perk", "settings": { "number": "03", "title": "Solde hoodies", "text": "350 → 229 dh." } },
+        { "type": "perk", "settings": { "number": "04", "title": "Handmade", "text": "Custom atelier, drops limités." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

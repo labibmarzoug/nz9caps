@@ -1,0 +1,45 @@
+<section class="wrap cart-page">
+  <div class="section-head">
+    <div>
+      <span class="kicker">Panier</span>
+      <h1>Votre panier</h1>
+    </div>
+  </div>
+
+  {%- if cart.item_count == 0 -%}
+    <div class="coming-soon glass">
+      <b>Panier vide</b>
+      <p>Ajoute un hoodie ou une cap pour commencer.</p>
+      <a class="btn" href="{{ routes.all_products_collection_url }}">Shop now</a>
+    </div>
+  {%- else -%}
+    <form action="{{ routes.cart_url }}" method="post">
+      {%- for item in cart.items -%}
+        <article class="cart-row">
+          {%- if item.image -%}
+            <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}">
+          {%- endif -%}
+          <div>
+            <b>{{ item.product.title }}</b>
+            <span>{{ item.variant.title }}</span>
+            <div>{{ item.final_price | money }}</div>
+          </div>
+          <input type="number" name="updates[]" value="{{ item.quantity }}" min="0">
+          <a href="{{ item.url_to_remove }}">Retirer</a>
+        </article>
+      {%- endfor -%}
+      <div class="cart-total">
+        <b>Total {{ cart.total_price | money }}</b>
+        <button class="btn" name="update" type="submit">Mettre à jour</button>
+        <button class="btn" name="checkout" type="submit">Commander (COD)</button>
+      </div>
+    </form>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Panier",
+  "settings": []
+}
+{% endschema %}

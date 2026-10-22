@@ -1,0 +1,12 @@
+node_modules
+src
+public
+dist
+index.html
+package.json
+package-lock.json
+vite.config.js
+*.config.js
+.oxlintrc.json
+shopify-products.json
+README.md

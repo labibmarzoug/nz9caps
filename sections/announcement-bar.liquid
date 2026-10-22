@@ -1,0 +1,33 @@
+{%- if section.settings.show_bar -%}
+  <div class="announce" role="status" data-countdown="{{ settings.sale_end }}">
+    <div class="announce-track">
+      {% for i in (1..2) %}
+        <div class="announce-inner">
+          <span>{{ section.settings.shipping }}</span>
+          <i aria-hidden="true">✦</i>
+          <span class="announce-sale">
+            {{ section.settings.sale_text }}
+            <s>{{ settings.sale_from }} dh</s>
+            {{ settings.sale_to }} dh
+          </span>
+          {%- if section.settings.show_countdown -%}
+            <i aria-hidden="true">✦</i>
+            <span class="chrono js-chrono" aria-label="Fin du solde"></span>
+          {%- endif -%}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Barre d'annonce",
+  "settings": [
+    { "type": "checkbox", "id": "show_bar", "label": "Afficher la barre", "default": true },
+    { "type": "text", "id": "shipping", "label": "Texte livraison", "default": "Livraison gratuite · 24h–48h Maroc" },
+    { "type": "text", "id": "sale_text", "label": "Texte solde", "default": "Solde hoodies" },
+    { "type": "checkbox", "id": "show_countdown", "label": "Afficher le chrono", "default": true }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": { "type": "main-page", "settings": {} },
+    "form": {
+      "type": "contact-form",
+      "settings": {
+        "kicker": "Studio",
+        "heading": "Contact",
+        "button_label": "Envoyer"
+      }
+    }
+  },
+  "order": ["main", "form"]
+}

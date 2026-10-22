@@ -1,0 +1,40 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Studiocapnza9",
+    "theme_version": "1.0.0",
+    "theme_author": "Studiocapnza9",
+    "theme_documentation_url": "https://github.com/labibmarzoug/nz9caps",
+    "theme_support_url": "https://github.com/labibmarzoug/nz9caps"
+  },
+  {
+    "name": "Couleurs",
+    "settings": [
+      { "type": "color", "id": "color_bg", "label": "Fond", "default": "#ffffff" },
+      { "type": "color", "id": "color_text", "label": "Texte", "default": "#000000" },
+      { "type": "color", "id": "color_blue", "label": "Bleu", "default": "#1560ff" }
+    ]
+  },
+  {
+    "name": "Logo",
+    "settings": [
+      { "type": "image_picker", "id": "logo", "label": "Logo" },
+      { "type": "range", "id": "logo_height", "min": 20, "max": 80, "step": 2, "unit": "px", "label": "Hauteur logo", "default": 36 }
+    ]
+  },
+  {
+    "name": "Solde et chrono",
+    "settings": [
+      { "type": "text", "id": "sale_from", "label": "Prix avant solde", "default": "350" },
+      { "type": "text", "id": "sale_to", "label": "Prix solde", "default": "229" },
+      { "type": "text", "id": "sale_end", "label": "Fin du chrono (ISO)", "default": "2026-10-28T23:59:59+02:00", "info": "Exemple : 2026-10-28T23:59:59+02:00" }
+    ]
+  },
+  {
+    "name": "Social",
+    "settings": [
+      { "type": "text", "id": "social_instagram", "label": "Instagram" },
+      { "type": "text", "id": "social_tiktok", "label": "TikTok" }
+    ]
+  }
+]

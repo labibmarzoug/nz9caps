@@ -1,0 +1,80 @@
+<section class="wrap page-content">
+  <div class="section-head">
+    <div>
+      <span class="kicker">Compte</span>
+      <h1>
+        {%- case request.page_type -%}
+          {%- when 'customers/login' -%}Connexion
+          {%- when 'customers/register' -%}Créer un compte
+          {%- when 'customers/account' -%}Mon compte
+          {%- when 'customers/reset_password' -%}Nouveau mot de passe
+          {%- when 'customers/activate_account' -%}Activer le compte
+          {%- when 'customers/addresses' -%}Adresses
+          {%- when 'customers/order' -%}Commande
+          {%- else -%}Compte
+        {%- endcase -%}
+      </h1>
+    </div>
+  </div>
+
+  {%- if request.page_type == 'customers/login' -%}
+    {% form 'customer_login' %}
+      {{ form.errors | default_errors }}
+      <div class="field"><input type="email" name="customer[email]" placeholder="Email" required></div>
+      <div class="field"><input type="password" name="customer[password]" placeholder="Mot de passe" required></div>
+      <button class="btn" type="submit">Entrer</button>
+    {% endform %}
+    <p><a href="{{ routes.account_register_url }}">Créer un compte</a></p>
+  {%- elsif request.page_type == 'customers/register' -%}
+    {% form 'create_customer' %}
+      {{ form.errors | default_errors }}
+      <div class="field"><input type="text" name="customer[first_name]" placeholder="Prénom"></div>
+      <div class="field"><input type="text" name="customer[last_name]" placeholder="Nom"></div>
+      <div class="field"><input type="email" name="customer[email]" placeholder="Email" required></div>
+      <div class="field"><input type="password" name="customer[password]" placeholder="Mot de passe" required></div>
+      <button class="btn" type="submit">Créer</button>
+    {% endform %}
+  {%- elsif request.page_type == 'customers/account' -%}
+    <p>Bonjour {{ customer.first_name }}.</p>
+    <p><a href="{{ routes.account_addresses_url }}">Adresses</a> · <a href="{{ routes.account_logout_url }}">Déconnexion</a></p>
+    {%- if customer.orders.size > 0 -%}
+      <div class="rte">
+        {%- for order in customer.orders -%}
+          <p><a href="{{ order.customer_url }}">{{ order.name }}</a> — {{ order.created_at | date: '%d/%m/%Y' }}</p>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  {%- elsif request.page_type == 'customers/reset_password' -%}
+    {% form 'reset_customer_password' %}
+      {{ form.errors | default_errors }}
+      <div class="field"><input type="password" name="customer[password]" placeholder="Nouveau mot de passe"></div>
+      <div class="field"><input type="password" name="customer[password_confirmation]" placeholder="Confirmer"></div>
+      <button class="btn" type="submit">Enregistrer</button>
+    {% endform %}
+  {%- elsif request.page_type == 'customers/activate_account' -%}
+    {% form 'activate_customer_password' %}
+      {{ form.errors | default_errors }}
+      <div class="field"><input type="password" name="customer[password]" placeholder="Mot de passe"></div>
+      <div class="field"><input type="password" name="customer[password_confirmation]" placeholder="Confirmer"></div>
+      <button class="btn" type="submit">Activer</button>
+    {% endform %}
+  {%- elsif request.page_type == 'customers/addresses' -%}
+    {% paginate customer.addresses by 10 %}
+      {%- for address in customer.addresses -%}
+        <div class="rte">{{ address | format_address }}</div>
+      {%- endfor -%}
+    {% endpaginate %}
+  {%- elsif request.page_type == 'customers/order' -%}
+    <p>{{ order.name }} — {{ order.created_at | date: '%d/%m/%Y' }}</p>
+    {%- for line_item in order.line_items -%}
+      <p>{{ line_item.title }} × {{ line_item.quantity }}</p>
+    {%- endfor -%}
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Compte client",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,59 @@
+<footer class="footer">
+  <div class="wrap footer-top">
+    <div class="footer-brand">
+      {%- if settings.logo != blank -%}
+        <img class="footer-logo" src="{{ settings.logo | image_url: width: 180 }}" alt="{{ shop.name }}">
+      {%- else -%}
+        <img class="footer-logo" src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}">
+      {%- endif -%}
+      <p>{{ section.settings.blurb }}</p>
+    </div>
+    <div>
+      <h3>Shop</h3>
+      {%- if section.settings.menu != blank -%}
+        {%- for link in section.settings.menu.links -%}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {%- endfor -%}
+      {%- else -%}
+        <a href="{{ routes.all_products_collection_url }}">Shop</a>
+        <a href="{{ pages.about.url | default: '/pages/about' }}">About</a>
+        <a href="{{ pages.contact.url | default: '/pages/contact' }}">Contact</a>
+      {%- endif -%}
+    </div>
+    {%- if section.settings.show_newsletter -%}
+      <div>
+        <h3>{{ section.settings.newsletter_title }}</h3>
+        {% form 'customer' %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="newsletter-row">
+            <input type="email" name="contact[email]" placeholder="{{ section.settings.newsletter_placeholder }}" required>
+            <button class="btn" type="submit">{{ section.settings.newsletter_button }}</button>
+          </div>
+        {% endform %}
+      </div>
+    {%- endif -%}
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+    {%- if settings.social_instagram != blank -%}
+      <a href="{{ settings.social_instagram }}">Instagram</a>
+    {%- endif -%}
+    {%- if settings.social_tiktok != blank -%}
+      <a href="{{ settings.social_tiktok }}">TikTok</a>
+    {%- endif -%}
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "textarea", "id": "blurb", "label": "Texte", "default": "Découvrez l'exclusivité où le streetwear rencontre la haute couture." },
+    { "type": "link_list", "id": "menu", "label": "Menu footer", "default": "footer" },
+    { "type": "checkbox", "id": "show_newsletter", "label": "Afficher newsletter", "default": true },
+    { "type": "text", "id": "newsletter_title", "label": "Titre newsletter", "default": "Newsletter" },
+    { "type": "text", "id": "newsletter_placeholder", "label": "Placeholder email", "default": "Email" },
+    { "type": "text", "id": "newsletter_button", "label": "Bouton", "default": "OK" }
+  ]
+}
+{% endschema %}

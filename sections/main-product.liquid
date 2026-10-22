@@ -1,0 +1,57 @@
+<section class="wrap product-page">
+  <div class="product-gallery">
+    {%- if product.featured_image -%}
+      <div class="product-stage">
+        <img src="{{ product.featured_image | image_url: width: 1400 }}" alt="{{ product.title | escape }}">
+      </div>
+    {%- endif -%}
+    {%- if product.images.size > 1 -%}
+      <div class="thumbs">
+        {%- for image in product.images -%}
+          <img src="{{ image | image_url: width: 200 }}" alt="{{ image.alt | escape }}">
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="product-info">
+    {%- if product.compare_at_price > product.price -%}
+      <span class="kicker">Sale</span>
+    {%- endif -%}
+    <h1>{{ product.title }}</h1>
+    <div class="product-price">
+      {{ product.price | money }}
+      {%- if product.compare_at_price > product.price -%}
+        <s>{{ product.compare_at_price | money }}</s>
+      {%- endif -%}
+    </div>
+    <div class="product-desc">{{ product.description }}</div>
+
+    {% form 'product', product %}
+      <div class="option">
+        <label class="option-label">{{ product.options_with_values.first.name | default: 'Option' }}</label>
+        <select name="id" class="mini-select">
+          {%- for variant in product.variants -%}
+            <option
+              value="{{ variant.id }}"
+              {% if variant == product.selected_or_first_available_variant %}selected{% endif %}
+              {% unless variant.available %}disabled{% endunless %}
+            >
+              {{ variant.title }} — {{ variant.price | money }}
+            </option>
+          {%- endfor -%}
+        </select>
+      </div>
+      <button class="btn full" type="submit" {% unless product.available %}disabled{% endunless %}>
+        {%- if product.available -%}Ajouter au panier{%- else -%}Sold out{%- endif -%}
+      </button>
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Produit",
+  "settings": []
+}
+{% endschema %}

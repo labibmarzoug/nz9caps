@@ -1,0 +1,30 @@
+<section class="wrap collection-page">
+  <div class="section-head">
+    <div>
+      <span class="kicker">Search</span>
+      <h1>Recherche</h1>
+    </div>
+  </div>
+  <form action="{{ routes.search_url }}" method="get" class="field-row">
+    <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Chercher un produit">
+    <button class="btn" type="submit">OK</button>
+  </form>
+  {%- if search.performed -%}
+    <div class="product-grid">
+      {%- for item in search.results -%}
+        {%- if item.object_type == 'product' -%}
+          {% render 'product-card', product: item %}
+        {%- endif -%}
+      {%- else -%}
+        <p>Aucun résultat.</p>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Recherche",
+  "settings": []
+}
+{% endschema %}

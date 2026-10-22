@@ -1,0 +1,14 @@
+<section class="wrap coming-soon glass">
+  <b>404</b>
+  <p>{{ section.settings.text }}</p>
+  <a class="btn" href="{{ routes.root_url }}">Retour</a>
+</section>
+
+{% schema %}
+{
+  "name": "404",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Texte", "default": "Cette page n'existe pas." }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,65 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "kicker": "Streetwear × haute couture",
+        "heading": "More than just clothes.",
+        "text": "Hoodies en solde. Livraison gratuite 24h–48h.",
+        "button_label": "Shop now"
+      }
+    },
+    "perks": {
+      "type": "perks",
+      "blocks": {
+        "p1": { "type": "perk", "settings": { "number": "01", "title": "Livraison gratuite", "text": "24h à 48h partout au Maroc." } },
+        "p2": { "type": "perk", "settings": { "number": "02", "title": "Cash on delivery", "text": "Tu paies à la réception." } },
+        "p3": { "type": "perk", "settings": { "number": "03", "title": "Solde hoodies", "text": "350 → 229 dh." } },
+        "p4": { "type": "perk", "settings": { "number": "04", "title": "Handmade", "text": "Custom atelier, drops limités." } }
+      },
+      "block_order": ["p1", "p2", "p3", "p4"]
+    },
+    "circles": {
+      "type": "collection-circles",
+      "settings": {
+        "kicker": "Collections",
+        "heading": "Shop the drop."
+      },
+      "blocks": {
+        "c1": { "type": "circle", "settings": { "title": "Hoodies" } },
+        "c2": { "type": "circle", "settings": { "title": "Caps" } },
+        "c3": { "type": "circle", "settings": { "title": "Long Sleeves" } },
+        "c4": { "type": "circle", "settings": { "title": "All Products" } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4"]
+    },
+    "hoodies": {
+      "type": "featured-collection",
+      "settings": {
+        "kicker": "Drop",
+        "title": "Hoodies",
+        "limit": 4,
+        "button_label": "View All"
+      }
+    },
+    "caps": {
+      "type": "featured-collection",
+      "settings": {
+        "kicker": "Drop",
+        "title": "Caps",
+        "limit": 4,
+        "button_label": "View All"
+      }
+    },
+    "longsleeves": {
+      "type": "coming-soon",
+      "settings": {
+        "kicker": "Next drop",
+        "title": "Long Sleeves",
+        "heading": "Coming soon.",
+        "text": "Le drop Long Sleeves arrive. Reste dans le shop pour le drop."
+      }
+    }
+  },
+  "order": ["hero", "perks", "circles", "hoodies", "caps", "longsleeves"]
+}

@@ -1,0 +1,17 @@
+{% layout none %}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Carte cadeau {{ shop.name }}</title>
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+  </head>
+  <body>
+    <main class="wrap page-content">
+      <h1>{{ shop.name }}</h1>
+      <p>{{ gift_card.balance | money }}</p>
+      <p>{{ gift_card.code | format_code }}</p>
+    </main>
+  </body>
+</html>

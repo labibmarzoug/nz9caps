@@ -1,0 +1,48 @@
+<header class="header glass">
+  <a href="{{ routes.root_url }}" class="header-logo" aria-label="{{ shop.name }}">
+    {%- if settings.logo != blank -%}
+      <img src="{{ settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}" height="{{ settings.logo_height }}">
+    {%- else -%}
+      <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}">
+    {%- endif -%}
+  </a>
+
+  <nav class="header-nav" id="HeaderNav" aria-label="Primary">
+    {%- if section.settings.menu != blank -%}
+      {%- for link in section.settings.menu.links -%}
+        <a class="nav-link{% if link.active %} active{% endif %}" href="{{ link.url }}">{{ link.title }}</a>
+      {%- else -%}
+        <a class="nav-link{% if request.path == routes.root_url %} active{% endif %}" href="{{ routes.root_url }}">Home</a>
+        <a class="nav-link{% if request.page_type == 'collection' %} active{% endif %}" href="{{ routes.all_products_collection_url }}">Shop</a>
+        <a class="nav-link{% if page.handle == 'about' %} active{% endif %}" href="{{ pages.about.url | default: '/pages/about' }}">About</a>
+        <a class="nav-link{% if page.handle == 'contact' %} active{% endif %}" href="{{ pages.contact.url | default: '/pages/contact' }}">Contact</a>
+      {%- endfor -%}
+    {%- else -%}
+      <a class="nav-link{% if request.path == routes.root_url %} active{% endif %}" href="{{ routes.root_url }}">Home</a>
+      <a class="nav-link{% if request.page_type == 'collection' %} active{% endif %}" href="{{ routes.all_products_collection_url }}">Shop</a>
+      <a class="nav-link{% if page.handle == 'about' %} active{% endif %}" href="{{ pages.about.url | default: '/pages/about' }}">About</a>
+      <a class="nav-link{% if page.handle == 'contact' %} active{% endif %}" href="{{ pages.contact.url | default: '/pages/contact' }}">Contact</a>
+    {%- endif -%}
+  </nav>
+
+  <div class="header-actions">
+    <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-label="Menu">☰</button>
+    <a class="icon-btn" href="{{ routes.search_url }}" aria-label="Search">⌕</a>
+    <a class="icon-btn" href="{{ routes.account_url }}" aria-label="Account">○</a>
+    <a class="icon-btn" href="{{ routes.cart_url }}" aria-label="Cart">
+      ▢
+      {%- if cart.item_count > 0 -%}
+        <span class="cart-count">{{ cart.item_count }}</span>
+      {%- endif -%}
+    </a>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,24 @@
+{%- assign card_product = product -%}
+<article class="product-card">
+  <a href="{{ card_product.url }}" class="card-media">
+    {%- if card_product.compare_at_price > card_product.price -%}
+      <span class="card-badge">Sale</span>
+    {%- endif -%}
+    {%- if card_product.available == false -%}
+      <span class="card-badge">Sold out</span>
+    {%- endif -%}
+    {%- if card_product.featured_image -%}
+      <img src="{{ card_product.featured_image | image_url: width: 900 }}" alt="{{ card_product.title | escape }}">
+    {%- endif -%}
+    <span class="card-action">Shop now</span>
+  </a>
+  <div>
+    <h3 class="card-title"><a href="{{ card_product.url }}">{{ card_product.title }}</a></h3>
+    <div class="card-price">
+      {{ card_product.price | money }}
+      {%- if card_product.compare_at_price > card_product.price -%}
+        <s>{{ card_product.compare_at_price | money }}</s>
+      {%- endif -%}
+    </div>
+  </div>
+</article>
