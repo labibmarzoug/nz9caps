@@ -12,7 +12,7 @@
     "settings": [
       { "type": "color", "id": "color_bg", "label": "Fond", "default": "#ffffff" },
       { "type": "color", "id": "color_text", "label": "Texte", "default": "#000000" },
-      { "type": "color", "id": "color_blue", "label": "Bleu", "default": "#1560ff" }
+      { "type": "color", "id": "color_blue", "label": "Accent", "default": "#000000" }
     ]
   },
   {
